@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Navigation */
+nav {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #f7b733;
+}
+
+/* Home Section */
+#home {
+    background: url('background.jpg') no-repeat center center/cover;
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+#home .container {
+    opacity: 1;
+    z-index: 2;
+}
+
+#home h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#home p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+#home .btn {
+    background: #f7b733;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.25rem;
+    border-radius: 5px;
+}
+
+#home .btn:hover {
+    background: #fff;
+    color: #333;
+    transition: none;
+}
+
+
+/* About Section */
+#about {
+    padding: 4rem 0;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Portfolio Section */
+#portfolio {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+#portfolio h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.portfolio-items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.portfolio-item {
+    position: relative;
+    width: 30%;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.portfolio-item img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+#minesweaper {
+    position: relative;
+    bottom: -25%;
+}
+
+.hover {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+}
+
+.hover::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f7b733;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.portfolio-item a {
+    color: rgb(193, 193, 193);
+}
+
+.portfolio-item a::after {
+    background-color: #f7b733;
+    color: #f7b733;
+}
+
+.nav-links a {
+    color:white;
+}
+
+.nav-links a::after {
+    color: #f7b733;
+}
+
+
+
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}
+
+/* Contact Section */
+#contact {
+    padding: 4rem 0;
+    background: #333;
+    color: #fff;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+#contact form input,
+#contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 5px;
+}
+
+#contact form button {
+    padding: 10px 20px;
+    background: #f7b733;
+    color: #fff;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#contact form button:hover {
+    background: #fff;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .portfolio-item {
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    nav ul {
+        text-align: center;
+    }
+}
