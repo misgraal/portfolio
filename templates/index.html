@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://www.google.com/recaptcha/api.js?render=6Letal0qAAAAAPkIG60yTXY7VIRGTr74VKxFXTh9"></script>
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute("6Letal0qAAAAAPkIG60yTXY7VIRGTr74VKxFXTh9", {action: 'submit'}).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -45,14 +53,14 @@
             <h2>My Work</h2>
             <div class="portfolio-items">
                 <div class="portfolio-item">
-                    <img src="IMG_2037.PNG" alt="Project 1">
+                    <img src="{{ url_for('static', filename='images/IMG_2037.PNG') }}" alt="Project 1">
                     <div class="overlay">
                         <h3>RZG SECURITY DATABASE</h3>
                         <p>A database of school rule violators. Was created to simplify the registration of violators.</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="IMG_2038.PNG" alt="Project 2">
+                    <img src="{{ url_for('static', filename='images/IMG_2038.PNG') }}" alt="Project 2">
                     <div class="overlay">
                         <h3>NFC DOOR LOCK</h3>
                         <p>A project of door lock that can be opened by phone using NFC. Was made as a programming project at school.</p>
@@ -60,7 +68,7 @@
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="minesweaper.png" alt="Project 3" id="minesweaper">
+                    <img src="{{ url_for('static', filename='images/minesweaper.png') }}" alt="Project 3" id="minesweaper">
                     <div class="overlay">
                         <h3>MINESWEAPER</h3>
                         <p>A classic minesweaper game. Was made for educational purposes.</p>
@@ -75,10 +83,13 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Me</h2>
-            <form action="#">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
+            <form action="/submit_form", method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+
                 <button type="submit">Send Message</button>
             </form>
         </div>

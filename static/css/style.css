@@ -54,7 +54,7 @@ nav ul li a:hover {
 
 /* Home Section */
 #home {
-    background: url('background.jpg') no-repeat center center/cover;
+    background: url('../images/background.jpg') no-repeat center center/cover;
     color: #ffffff;
     height: 100vh;
     display: flex;
