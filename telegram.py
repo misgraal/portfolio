@@ -1,23 +1,36 @@
 import telebot
 import config
+from eventLib import event
 
 bot = telebot.TeleBot(config.TELEGRAM_BOT_TOKEN)
 
 
+events = event('event.txt')
 
-# Optionally, this could be the bot's main function if you also run it as a bot.
-def start_bot():
-    @bot.message_handler(commands=["start"])
-    def start(message):
-        bot.send_message(message.chat.id, message.chat.id)
 
-    def sendMessage(chat_id, text):
-        bot.send_message(chat_id, text)
-    # You can add your bot handlers here if needed
-    bot.infinity_polling()
 
-def send_message(chat_id, message_text):
-    sendMessage()
 
-if __name__ == "__main__":
-    start_bot()
+
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.send_message(message.chat.id, message.chat.id)
+
+
+def sendForm():
+    while True:
+        text = events.EventHandler('sendMessage')
+        
+        if text != "":
+            text = text.replace("\enter/", "\n", -1)
+            bot.send_message("727148312", text)
+        
+if __name__ == '__main__':
+    # Use threading to run both polling and sending repetitive messages concurrently
+    from threading import Thread
+
+    # Start the polling loop in a separate thread
+    polling_thread = Thread(target=bot.polling)
+    polling_thread.start()
+
+    # Start the repetitive message sending loop in the main thread or another thread
+    sendForm()

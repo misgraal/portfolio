@@ -4,7 +4,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
 import config
-import telegram
+from eventLib import event
+
+events = event('event.txt')
 
 RECAPTHA_KEY = config.RECAPTCHA_SECRET_KEY
 CHAT_ID = 727148312
@@ -51,8 +53,7 @@ def submit_form():
             msg['Subject'] = f"New message from {name}"
 
             # Email body content
-            body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-            msg.attach(MIMEText(body, 'plain'))
+            body = f"Name: {name}\enter/Email: {email}\enter/Message:\enter/{message}"
 
             # Send the email
             try:
@@ -63,6 +64,9 @@ def submit_form():
                 server.sendmail(email, USERNAME, text)
                 server.quit()"""
 
+                text = body
+                print(text)
+                events.TriggerEvent('sendMessage', text)
 
                 flash("Your message has been sent successfully!", "success")
             except Exception as e:
