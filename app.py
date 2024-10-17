@@ -3,8 +3,12 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
+import config
+import telegram
 
-RECAPTCHA_SECRET_KEY = '6Letal0qAAAAAOq54czK7DYZXyEUUmsMioQkxQ3D'
+RECAPTHA_KEY = config.RECAPTCHA_SECRET_KEY
+CHAT_ID = 727148312
+EVENT_FILE = './event.txt'
 
 app = Flask(__name__)
 app.secret_key = 'some_random_secret_key'  # For flash messages
@@ -31,7 +35,7 @@ def submit_form():
 
         recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'
         recaptcha_data = {
-            'secret': RECAPTCHA_SECRET_KEY,
+            'secret': RECAPTHA_KEY,
             'response': recaptcha_response
         }
 
@@ -52,12 +56,13 @@ def submit_form():
 
             # Send the email
             try:
-                server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+                """server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
                 server.starttls()
                 server.login(USERNAME, PASSWORD)
                 text = msg.as_string()
                 server.sendmail(email, USERNAME, text)
-                server.quit()
+                server.quit()"""
+
 
                 flash("Your message has been sent successfully!", "success")
             except Exception as e:
@@ -70,4 +75,5 @@ def submit_form():
             return redirect(url_for('contact'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=3666, debug=True)
+
