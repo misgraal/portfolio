@@ -16,7 +16,7 @@ def sendForm():
         
         if text != "":
             text = text.replace("\enter/", "\n", -1)
-            bot.send_message("727148312", text)
+            bot.send_message(config.CHAT_ID, text)
         
 if __name__ == '__main__':
     from threading import Thread

@@ -6,8 +6,6 @@ from eventLib import event
 events = event('event.txt')
 
 RECAPTHA_KEY = config.RECAPTCHA_SECRET_KEY
-CHAT_ID = 727148312
-EVENT_FILE = './event.txt'
 
 app = Flask(__name__)
 
