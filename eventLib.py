@@ -1,6 +1,8 @@
 class event:
     def __init__(self, file) -> None:
         self.file = file
+        with open(self.file, "w") as txt:
+            txt.write("")
     
     def EventHandler(self, eventName):
         lines = []
@@ -16,9 +18,19 @@ class event:
             if line.startswith(eventName):
                 parts = line.split(";-;")
                 text = parts[1]
-            
+                mainLine = line
+        
+        newLines = []
+
+        for line in lines:
+            line = str(line)
+            if mainLine != line:
+                newLines.append(line)
+
+
         with open(self.file, 'w') as file:
-            file.write("")
+            for line in newLines:
+                file.write(line + "\n")
         return text
     
     def TriggerEvent(self, eventName, *args):
